@@ -4,64 +4,300 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #d9e2ec;
+            --bg2: #f0f4f8;
+            --navy: #1a1a2e;
+            --navy2: #16213e;
+            --teal: #17a2b8;
+            --teal-dark: #117a8b;
+            --teal-light: #e0f5f8;
+            --white: #ffffff;
+            --text: #4a5568;
+            --border: #e8edf2;
+            --muted: #a0aec0;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, var(--bg2), var(--bg));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
         }
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+        .page-wrapper {
+            width: 100%;
+            max-width: 460px;
         }
-        fieldset {
-            border: none;
-            margin-bottom: 15px;
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+            animation: fadeUp 0.6s ease both;
         }
+
+        .logo-mark {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--navy), var(--navy2));
+            border-radius: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 16px rgba(23, 162, 184, 0.3);
+        }
+
+        .logo-mark svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--teal);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--navy);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+            animation: fadeUp 0.6s ease 0.1s both;
+        }
+
+        .name-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--navy);
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
         }
-        input[type="text"], input[type="email"], input[type="password"] {
+
+        .input-wrap {
+            position: relative;
+        }
+
+        
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
             width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
+            padding: 11px 14px 11px 40px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--navy);
+            background: var(--bg2);
+            transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
         }
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
+
+        input::placeholder {
+            color: var(--muted);
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--teal);
+            background: var(--white);
+            box-shadow: 0 0 0 4px var(--teal-light);
+        }
+
+        .select-wrap::after {
+            content: '';
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 5px solid transparent;
+            border-top-color: var(--muted);
+            pointer-events: none;
+            margin-top: 3px;
+        }
+
+        select { cursor: pointer; }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 24px 0;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, var(--navy), var(--navy2));
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
         }
-        input[type="submit"]:hover {
-            background-color: #45a049;
+
+        .btn-submit::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--teal), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            box-shadow: 0 6px 20px rgba(23, 162, 184, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-submit:hover::after {
+            opacity: 0.2;
+        }
+
+        .btn-submit:active {
+            transform: scale(0.98);
+        }
+
+        .signin-link {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.85rem;
+            color: var(--muted);
+            animation: fadeUp 0.6s ease 0.2s both;
+        }
+
+        .signin-link a {
+            color: var(--teal);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .signin-link a:hover {
+            color: var(--teal-dark);
+            text-decoration: underline;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            .name-row { grid-template-columns: 1fr; gap: 0; }
+            .card { padding: 28px 24px; }
         }
     </style>
 </head>
 <body>
-    <form action="create.php" method="post">
-        <fieldset>
-            <label for="FirstName">First Name:</label><br>
-            <input type="text" name="FirstName"><br>
-            <label for="LastName">Last Name:</label><br>
-            <input type="text" name="LastName"><br>
-            <label for="Email">Email:</label><br>
-            <input type="email" name="Email"><br>
-            <label for="Password">Password:</label><br>
-            <input type="password"  name="Password"><br>
-            <label for="Gender">Gender:</label><br>
-            <input type="text" id="Gender" name="Gender"><br>
-            <input type="submit" name="submit" value="Submit">
-        </fieldset>
-    </form>
+    <div class="page-wrapper">
+        <div class="header">
+            
+            <h1>Create your account</h1>
+        </div>
+
+        <div class="card">
+            <form action="create.php" method="post">
+                <fieldset style="border:none;">
+                    <div class="name-row">
+                        <div class="field">
+                            <label for="FirstName">First Name</label>
+                            <div class="input-wrap">
+                               
+                                <input type="text" id="FirstName" name="FirstName" placeholder="e.g: Celia">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="LastName">Last Name</label>
+                            <div class="input-wrap">
+                                
+                                <input type="text" id="LastName" name="LastName" placeholder="e.g: Joy">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="Email">Email Address</label>
+                        <div class="input-wrap">
+                            
+                            <input type="email" id="Email" name="Email" placeholder="e.g: ijoycelia@gmail.com">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="Password">Password</label>
+                        <div class="input-wrap">
+                            <input type="password" id="Password" name="Password" placeholder="Minimum 8 characters">
+                        </div>
+                    </div>
+
+                    <div class="field" style="margin-bottom:0;">
+                        <label for="Gender">Gender</label>
+                        <div class="input-wrap select-wrap">
+                            <select id="Gender" name="Gender">
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="non-binary">Non-binary</option>
+                                <option value="prefer-not-to-say">Prefer not to say</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <button type="submit" name="submit" class="btn-submit">Create Account</button>
+                </fieldset>
+            </form>
+        </div>
+
+        <p class="signin-link">Already have an account? <a href="login.php">Sign in</a></p>
+    </div>
 </body>
 </html>

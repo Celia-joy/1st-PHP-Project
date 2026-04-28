@@ -80,48 +80,11 @@ $result = $conn->query($sql);
                 font-size: 14px;
             }
 
-            /* ID column badge */
             tbody td:first-child {
                 font-weight: 600;
                 color: #17a2b8;
             }
 
-            .btn {
-                display: inline-block;
-                padding: 7px 16px;
-                border-radius: 6px;
-                font-size: 13px;
-                font-weight: 600;
-                cursor: pointer;
-                border: none;
-                transition: all 0.2s ease;
-                letter-spacing: 0.4px;
-            }
-
-            .btn-edit {
-                background-color: #17a2b8;
-                color: white;
-            }
-
-            .btn-edit:hover {
-                background-color: #117a8b;
-                transform: translateY(-1px);
-                box-shadow: 0 4px 12px rgba(23, 162, 184, 0.4);
-            }
-
-            .btn-delete {
-                background-color: #e53e3e;
-                color: white;
-                margin-left: 6px;
-            }
-
-            .btn-delete:hover {
-                background-color: #c53030;
-                transform: translateY(-1px);
-                box-shadow: 0 4px 12px rgba(229, 62, 62, 0.4);
-            }
-
-            /* Empty state */
             .no-data {
                 text-align: center;
                 padding: 40px;
@@ -141,7 +104,6 @@ $result = $conn->query($sql);
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Gender</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -155,23 +117,13 @@ $result = $conn->query($sql);
                             <td><?php echo $row['lname']; ?></td>
                             <td><?php echo $row['email']; ?></td>
                             <td><?php echo $row['gender']; ?></td>
-                            <td>
-                                <form action="update.php" method="get" style="display:inline;">
-                                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                    <button type="submit" class="btn btn-edit">✏️ Edit</button>
-                                </form>
-                                <form action="delete.php" method="get" style="display:inline;">
-                                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                    <button type="submit" class="btn btn-delete">🗑️ Delete</button>
-                                </form>
-                            </td>
                         </tr>
                     <?php
                         }
                     } else {
                     ?>
                         <tr>
-                            <td colspan="6" class="no-data">No users found.</td>
+                            <td colspan="5" class="no-data">No users found.</td>
                         </tr>
                     <?php
                     }
